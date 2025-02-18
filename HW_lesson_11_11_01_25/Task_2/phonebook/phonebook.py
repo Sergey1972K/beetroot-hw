@@ -1,3 +1,4 @@
+>>>>>>> 34398696df63ed02da6582d2768c9257f6d9fa9f
 import json
 import sys
 
@@ -6,8 +7,8 @@ HEADER = """Програма для управління особистою те
 """
 
 
-# відображення списку можливих функціональних опцій на екрані
-def print_functionality():
+def print_functionality(): # displaying a list of possible functional options on the screen
+>>>>>>> 34398696df63ed02da6582d2768c9257f6d9fa9f
     print(HEADER)
     print('0. Друк повідомлення про допомогу.')
     print("1. Створити новий контакт.")
@@ -22,8 +23,8 @@ def print_functionality():
     print("10. Вийти")
 
 
-# завантаження телефонної книги у форматі JSON
-def load_phonebook(filename):
+def load_phonebook(filename): # downloading the phonebook from a file in JSON format
+>>>>>>> 34398696df63ed02da6582d2768c9257f6d9fa9f
     try:
         with open(filename, 'r') as file:
             return json.load(file)
@@ -35,14 +36,12 @@ def load_phonebook(filename):
         return {}
 
 
-# збереження телефонної книги у форматі JSON
-def save_phonebook(filename, phonebook):
+def save_phonebook(filename, phonebook): # saving the phone book to a file in JSON format
     with open(filename, 'w') as file:
         json.dump(phonebook, file, indent=4)
 
-
-# створення нового контакту у телефонній книзі
-def create_contact(phonebook):
+def create_contact(phonebook): # creating a new contact in the phone book
+>>>>>>> 34398696df63ed02da6582d2768c9257f6d9fa9f
     first_name = input("Введіть ім'я: ")
     last_name = input("Введіть прізвище: ")
     middle_name = input("Введіть по-батькові: ")
@@ -60,22 +59,17 @@ def create_contact(phonebook):
     }
 
 
-# відображення всіх контактів у телефонній книзі
-def show_phonebook(phonebook):
+def show_phonebook(phonebook): # displaying all contacts in the phone book
     for phone_number, details in phonebook.items():
-        print(f"{details['Повне ім\'я']} - {phone_number} - "
-              f"{details['Місто']}, {details['Область']}")
+        print(f"{details['full_name']} - {phone_number} - {details['city']}, {details['region']}")
 
-
-# пошук контактів у телефонній книзі
-def search_entry(phonebook, key, value):
-    results = [entry for entry in phonebook.values()if entry.get(key) == value]
+def search_entry(phonebook, key, value): # search for contacts in the phone book
+    results = [entry for entry in phonebook.values() if entry.get(key) == value]
     for result in results:
         print(result)
 
-
-# видалення запису з телефонної книги
-def delete_entry(phonebook, phone_number):
+def delete_entry(phonebook, phone_number): # deleting an entry from the phone book
+>>>>>>> 34398696df63ed02da6582d2768c9257f6d9fa9f
     if phone_number in phonebook:
         del phonebook[phone_number]
         print(f"Запис з номером телефону {phone_number} видалено.")
@@ -83,8 +77,8 @@ def delete_entry(phonebook, phone_number):
         print("Номер телефону не знайдено в телефонній книзі.")
 
 
-# оновлення інформації про контакт у телефонній книзі
-def update_entry(phonebook, phone_number):
+def update_entry(phonebook, phone_number): # updating information about a contact in the phone book
+>>>>>>> 34398696df63ed02da6582d2768c9257f6d9fa9f
     if phone_number in phonebook:
         first_name = input("Введіть нове ім'я: ")
         last_name = input("Введіть нове прізвище: ")
@@ -100,13 +94,15 @@ def update_entry(phonebook, phone_number):
             "Область": region
         })
 
+
+>>>>>>> 34398696df63ed02da6582d2768c9257f6d9fa9f
         print(f"Запис з номером телефону {phone_number} оновлено.")
     else:
         print("Номер телефону не знайдено в телефонній книзі.")
 
 
-# основна програма управління телефонною книгою
-def main():
+def main(): # basic phonebook management program
+>>>>>>> 34398696df63ed02da6582d2768c9257f6d9fa9f
     if len(sys.argv) < 2:
         print("Будь ласка, вкажіть назву телефонної книги як перший аргумент.")
         return
@@ -114,9 +110,11 @@ def main():
     phonebook = load_phonebook(filename)
     print_functionality()
 
+    
     while True:
         choice = int(input("Ваш вибір: "))
-
+        
+>>>>>>> 34398696df63ed02da6582d2768c9257f6d9fa9f
         if choice == 0:
             print_functionality()
         elif choice == 1:
@@ -125,19 +123,21 @@ def main():
             show_phonebook(phonebook)
         elif choice == 3:
             name = input("Введіть ім'я для пошуку: ")
-            search_entry(phonebook, "Ім'я", name)
+
+            search_entry(phonebook, "first_name", name)
         elif choice == 4:
             surname = input("Введіть прізвище для пошуку: ")
-            search_entry(phonebook, "Прізвище", surname)
+            search_entry(phonebook, "last_name", surname)
         elif choice == 5:
             full_name = input("Введіть ПІБ для пошуку: ")
-            search_entry(phonebook, "Повне ім'я", full_name)
+            search_entry(phonebook, "full_name", full_name)
         elif choice == 6:
             phone_number = input("Введіть номер телефону для пошуку: ")
-            search_entry(phonebook, "Номер телефону", phone_number)
+            search_entry(phonebook, "phone_number", phone_number)
         elif choice == 7:
             city = input("Введіть місто для пошуку: ")
-            search_entry(phonebook, "Місто", city)
+            search_entry(phonebook, "city", city)
+>>>>>>> 34398696df63ed02da6582d2768c9257f6d9fa9f
         elif choice == 8:
             phone_number = input("Введіть номер телефону для видалення: ")
             delete_entry(phonebook, phone_number)
@@ -151,5 +151,6 @@ def main():
             print("Невірний вибір. Спробуйте ще раз.")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":     
     main()
+>>>>>>> 34398696df63ed02da6582d2768c9257f6d9fa9f
