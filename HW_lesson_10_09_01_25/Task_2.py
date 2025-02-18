@@ -13,3 +13,4 @@ def calculate():
         return "Значення повинні бути числами."
 result = calculate()
 print(result)
+
